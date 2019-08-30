@@ -1,7 +1,7 @@
 const initialState = {
   moviesData: [],
   totalData: 0,
-  loading: false
+  loading: false,
 };
 
 export default (state = initialState, action) => {
@@ -9,13 +9,13 @@ export default (state = initialState, action) => {
     case "START_LOADER":
       return {
         ...state,
-        loading: true
+        loading: true,
       };
 
     case "FETCH_MOVIES_DATA":
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
 
     default:

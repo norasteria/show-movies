@@ -8,7 +8,7 @@ export default () => {
   return (
     <Router>
       <Route path="/" exact component={MovieList} />
-      <Route path="/title" component={MovieDetails} />
+      <Route path="/:title" component={MovieDetails} />
     </Router>
   );
 };

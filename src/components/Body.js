@@ -5,4 +5,5 @@ export default styled.div`
   height: 100%;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
   margin: auto;
+  padding: 50px
 `;

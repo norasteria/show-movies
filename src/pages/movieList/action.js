@@ -10,7 +10,7 @@ export const fetchMovieData = searchKey => async dispatch => {
     payload: {
       moviesData: data.Search,
       totalData: data.totalResults,
-      loading: false
-    }
+      loading: false,
+    },
   });
 };
