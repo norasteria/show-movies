@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loader from "react-spinners/SyncLoader";
 
@@ -14,6 +14,8 @@ export default () => {
   const dispatch = useDispatch();
   const [searchKey, setSearchKey] = useState("");
   const [moviesArr, setMoviesArr] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [displayPict, setPict] = useState("");
   const loading = useSelector(({ movieList }) => movieList.loading);
   const moviesData = useSelector(({ movieList }) => movieList.moviesData);
 
@@ -33,6 +35,11 @@ export default () => {
     });
 
     setMoviesArr(newMovieData);
+  };
+
+  const onShowModal = posterUrl => {
+    setShowModal(true);
+    setPict(posterUrl);
   };
 
   return (
@@ -58,8 +65,9 @@ export default () => {
             <img
               src={data.Poster}
               alt="poster"
-              style={{ marginTop: 10, height: 500 }}
+              style={{ marginTop: 10, height: 500, cursor: "pointer" }}
               onError={() => pictBroken(data.imdbID)}
+              onClick={() => onShowModal(data.Poster)}
             />
             <Card.Body>
               <Card.Title>{data.Title}</Card.Title>
@@ -70,6 +78,18 @@ export default () => {
           </Card>
         ))
       )}
+
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        style={{ textAlign: "center" }}
+      >
+        <Modal.Header closeButton>Display Poster</Modal.Header>
+        <Modal.Body>
+          <img src={displayPict} alt="poster" />
+        </Modal.Body>
+      </Modal>
     </Body>
   );
 };
