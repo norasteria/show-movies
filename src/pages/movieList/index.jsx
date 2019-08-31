@@ -94,7 +94,7 @@ export default () => {
 
       <Pagination
         onPageChange={({ selected }) =>
-          dispatch(fetchMovieData(searchKey, selected))
+          dispatch(fetchMovieData(searchKey, selected + 1))
         }
         totalData={totalData}
       />
