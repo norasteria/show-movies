@@ -87,7 +87,7 @@ export default () => {
       >
         <Modal.Header closeButton>Display Poster</Modal.Header>
         <Modal.Body>
-          <img src={displayPict} alt="poster" />
+          <img src={displayPict} alt="poster" style={{ height: 700 }} />
         </Modal.Body>
       </Modal>
 

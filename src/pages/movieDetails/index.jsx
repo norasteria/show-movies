@@ -30,7 +30,11 @@ export default ({ match }) => {
       ) : (
         <Row style={{ marginTop: 50 }}>
           <Col style={{ textAlign: "center" }}>
-            <img src={content.Poster} alt="Poster" />
+            <img
+              src={content.Poster}
+              alt="Poster"
+              style={{ borderRadius: 5 }}
+            />
           </Col>
           <Col>
             <div>
