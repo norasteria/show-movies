@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -24,10 +24,6 @@ export default () => {
     setMoviesArr(moviesData);
   }, [moviesData]);
 
-  const onSearch = useCallback(() => {
-    dispatch(fetchMovieData(searchKey));
-  }, [dispatch, searchKey]);
-
   const pictBroken = imdbId => {
     const newMovieData = moviesArr.map(data => {
       if (data.imdbID === imdbId) data.Poster = NoImg;
@@ -48,7 +44,10 @@ export default () => {
       <div style={{ marginBottom: 50, letterSpacing: "1em" }}>
         <h1>MOVIES LIST</h1>
       </div>
-      <SearchBar searchOnChange={setSearchKey} onSearch={onSearch} />
+      <SearchBar
+        searchOnChange={setSearchKey}
+        onSearch={() => dispatch(fetchMovieData(searchKey))}
+      />
       {loading ? (
         <div style={{ marginTop: 50, marginBottom: 50 }}>
           <Loader loading={true} sizeUnit={"px"} size={30} />
