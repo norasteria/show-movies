@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loader from "react-spinners/SyncLoader";
+import Pagination from "../../components/Pagination";
 
 import { fetchMovieData } from "./action";
 import Body from "../../components/Body";
 import SearchBar from "../../components/SearchBar";
 import NoImg from "../../img/dummy.png";
-// require("bootstrap/less/bootstrap.less");
 
 export default () => {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default () => {
   const [moviesArr, setMoviesArr] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [displayPict, setPict] = useState("");
+  const totalData = useSelector(({ movieList }) => movieList.totalData);
   const loading = useSelector(({ movieList }) => movieList.loading);
   const moviesData = useSelector(({ movieList }) => movieList.moviesData);
 
@@ -90,6 +91,13 @@ export default () => {
           <img src={displayPict} alt="poster" />
         </Modal.Body>
       </Modal>
+
+      <Pagination
+        onPageChange={({ selected }) =>
+          dispatch(fetchMovieData(searchKey, selected))
+        }
+        totalData={totalData}
+      />
     </Body>
   );
 };

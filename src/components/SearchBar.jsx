@@ -2,11 +2,18 @@ import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 export default ({ searchOnChange, onSearch }) => {
+  const onKeyPress = ({ key }) => {
+    if (key === "Enter") {
+      onSearch();
+    }
+  };
+
   return (
     <InputGroup className="mb-3" style={{ width: "50%", margin: "auto" }}>
       <FormControl
         aria-describedby="basic-addon1"
         onChange={({ target }) => searchOnChange(target.value)}
+        onKeyPress={onKeyPress}
       />
       <InputGroup.Prepend>
         <Button
