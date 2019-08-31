@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const omdbUrl = "http://www.omdbapi.com?apikey=faf7e5bb&";
+const omdbUrl = "https://www.omdbapi.com?apikey=faf7e5bb&";
 
 export const fetchMovies = (searchKey, page) =>
   new Promise((resolve, reject) => {
