@@ -48,36 +48,34 @@ export default () => {
         searchOnChange={setSearchKey}
         onSearch={() => dispatch(fetchMovieData(searchKey))}
       />
-      {loading ? (
-        <div style={{ marginTop: 50, marginBottom: 50 }}>
-          <Loader loading={true} sizeUnit={"px"} size={30} />
-        </div>
-      ) : (
-        moviesArr.map(data => (
-          <Card
-            style={{
-              width: 500,
-              display: "inline-block",
-              marginRight: "50px",
-              marginBottom: "50px",
-            }}
-          >
-            <img
-              src={data.Poster}
-              alt="poster"
-              style={{ marginTop: 10, height: 500, cursor: "pointer" }}
-              onError={() => pictBroken(data.imdbID)}
-              onClick={() => onShowModal(data.Poster)}
-            />
-            <Card.Body>
-              <Card.Title>{data.Title}</Card.Title>
-              <Link to={`/${data.Title}`}>
-                <Button size="sm">View Details</Button>
-              </Link>
-            </Card.Body>
-          </Card>
-        ))
-      )}
+
+      <div style={{ marginTop: 50, marginBottom: 50 }}>
+        <Loader loading={true} sizeUnit={"px"} size={30} />
+      </div>
+      {moviesArr.map(data => (
+        <Card
+          style={{
+            width: 500,
+            display: "inline-block",
+            marginRight: "50px",
+            marginBottom: "50px",
+          }}
+        >
+          <img
+            src={data.Poster}
+            alt="poster"
+            style={{ marginTop: 10, height: 500, cursor: "pointer" }}
+            onError={() => pictBroken(data.imdbID)}
+            onClick={() => onShowModal(data.Poster)}
+          />
+          <Card.Body>
+            <Card.Title>{data.Title}</Card.Title>
+            <Link to={`/${data.Title}`}>
+              <Button size="sm">View Details</Button>
+            </Link>
+          </Card.Body>
+        </Card>
+      ))}
 
       <Modal
         show={showModal}
