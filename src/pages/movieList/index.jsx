@@ -50,7 +50,7 @@ export default () => {
       />
 
       <div style={{ marginTop: 50, marginBottom: 50 }}>
-        <Loader loading={true} sizeUnit={"px"} size={30} />
+        <Loader loading={loading} sizeUnit={"px"} size={30} />
       </div>
       {moviesArr.map(data => (
         <Card
